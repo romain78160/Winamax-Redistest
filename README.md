@@ -16,5 +16,8 @@ il se réactive en cas de fin de traitement ou d'erreur
 
 Difficultés:
  - redis: jamais utilisé, ne connaissant pas cette base noSql, je me suis renseigné sur internet (stackoverflow.com et la doc de redis https://redis.io/commands)
- - Problèmes sur un nombre d'envoi supérieur à 300 éléments: je ne maitrise pas la librairie async de node.
- - les script de test: je manque de pratique sur les script de test.
+ - Problèmes sur un nombre d'envoi supérieur à 300 éléments: 
+    -> je ne maitrise pas la librairie async de node. je me suis documenté sur le async.eachLimit()
+    -> je me suis aussi documenté sur la facon de pouvoir envoyer un tableau à redis et non resultat par resultat
+
+ - les script de test: je manque de pratique sur les script de test.: documentation sur mocha
