@@ -1,0 +1,272 @@
+html,
+body {
+    height: 100%;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+p {
+  color: #00B7FF;
+}
+
+.field {
+    font-size: 18px;
+    border: 1px solid black;
+}
+
+.field img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+.recapitulatif {
+    text-align: center;
+    border: 1px solid black;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.chart2{
+  width: 90%;
+  height: 90%;
+}
+
+.btn:focus, .upload-btn:focus {
+    outline: 0 !important;
+}
+
+.upload {
+    padding-top:10%;
+    background-color: #4791D2;
+    height:100%;
+}
+
+.row {
+    margin-top: 80px;
+}
+
+.upload-btn {
+    color: #ffffff;
+    background-color: #F89406;
+    border: none;
+}
+
+.upload-btn:hover,
+.upload-btn:focus,
+.upload-btn:active,
+.upload-btn.active {
+        color: #ffffff;
+        background-color: #FA8900;
+        border: none;
+}
+
+.glyphicon {
+    font-size: 5em;
+    color: #9CA3A9;
+}
+
+h2 {
+    margin-top: 15px;
+    color: #68757E;
+}
+
+.panel {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#upload-input {
+    display: block;
+}
+
+form {
+    font-size: 13px;
+}
+
+@media (max-width:1060px){
+
+    form {
+        font-size: 11px;
+    }
+
+}
+
+@media (max-width:860px) {
+
+    form {
+        font-size: 10px;
+    }
+}
+
+.table_container {
+    width: 80%;
+    min-width:1200px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+    display: inline-block;
+}
+
+.table_container input {
+        float: right;
+}
+
+
+li {
+    display: inline-block;
+    border: 1px solid black;
+    height: 100%;
+    vertical-align: top;
+}
+
+
+.navbar {
+    height: 120px;
+    width: 100%;
+    min-width: 1200px;
+    max-width:1300px;
+    margin: auto;
+}
+
+.nav-link {
+    width: 8%;
+    text-align: center;
+    font-size: 13px;
+}
+
+.nav-link a {
+    vertical-align: middle;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+
+}
+
+.nav-link p {
+    vertical-align: middle;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    margin:auto;
+}
+
+.nav-search {
+    width: 57%;
+    font-size: 10px;
+}
+
+.nav-search input[type!="submit"] {
+        width: 100%;
+}
+
+.nav-search input[type ="submit"] {
+        width: 35%;
+}
+
+.nav-search table {
+        height: 100%;
+}
+
+
+.tableRoul {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+}
+
+#printableArea {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+}
+
+table.tableRoul,
+table.tableRoul th,
+table.tableRoul td {
+    border: 1px solid black;
+    font-size: 12px;
+
+}
+
+table.tableRoul th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+table {
+    margin:auto;
+}
+
+th, td {
+    padding:3px;
+}
+
+.echart {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+#html-table {
+    display: none;
+}
+.echart{
+    position:relative;
+    display:block;
+    margin:auto;
+}
+
+.dezoom {
+    display: block;
+    float: right;
+    margin-right: 235px;
+    margin-bottom: 50px;
+    clear: both;
+}
+
+.tableDef {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    align-self: center;
+}
+
+table.tableDef,
+table.tableDef th,
+table.tableDef td {
+    border: 1px solid black;
+    font-size: 18px;
+}
+
+table.tableDef th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba( 255, 255, 255, .8 ) url('http://sampsonresume.com/labs/pIkfp.gif') 50% 50% no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;
+}
+
+    /* Anytime the body has the loading class, our
+   modal element will be visible */
+    body.loading .modal {
+        display: block;
+    }
+	

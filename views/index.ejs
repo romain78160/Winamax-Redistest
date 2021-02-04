@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="fixed">
+<head>
+	<% include partials/head %>
+</head>
+<body>
+  <!-- start: page -->
+  <section class="body-sign">
+
+	<!--  -->
+
+	<h1>Test technique Winamax</h1>
+
+	<form action="/" method="post" id="Form">
+
+		<fieldset>
+			<div class="row">
+				<label class="col-md-4" for="nbElem">Number of elements</label>
+				<div class="col-md-5">
+					<input type="text" class="form-control" name="nbElem" id="nbElem" value="20">
+				</div>
+				<button type="submit" id="btnSend" class="col-md-3 btn btn-primary">
+					<i class="fa fa-cloud-upload"></i>
+					Send
+				</button>
+			</div>
+
+			<div class="row">
+				<label class="col-md-4" for="nbelem">elements processed: </label>
+				<div class="col-md-3" id="nbelem"></div>
+			</div>
+			
+			<div class="row">
+				<label class="col-md-4" for="statusProcess">Status: </label>
+				<div class="col-md-3" id="statusProcess"></div>
+			</div>
+	
+			<div class="row">
+				<label class="col-md-4" for="timeProcess">Time to process: </label>
+				<div class="chronoArea col-md-3"></div>
+			</div>
+
+		</fieldset>
+
+		
+
+	</form>
+
+</section>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+	
+	var msgId = 0;//identifiant du message envoyé
+	var nbElem = 0;// nombre de pari envoyé
+	var totalElem = 0;
+	//affichage du chrono
+	var start = 0;
+	var end = 0;
+	var diff = 0;
+	var timerID = 0;
+
+	function updateNbElem(nbProcessed = 0){
+		$("#nbelem").text(nbProcessed+"/"+$('#nbElem').val());
+	}
+
+	function chrono(){
+		end = new Date();
+		diff = end - start;
+		diff = new Date(diff);
+		var msec = diff.getMilliseconds();
+		var sec = diff.getSeconds();
+		var min = diff.getMinutes();
+		var hr = diff.getHours()-1;
+		if (min < 10){
+			min = "0" + min;
+		}
+		if (sec < 10){
+			sec = "0" + sec;
+		}
+		if(msec < 10){
+			msec = "00" +msec;
+		}
+		else if(msec < 100){
+			msec = "0" +msec;
+		}
+		$(".chronoArea").html(min + ":" + sec + ":" + msec);
+
+		timerID = setTimeout("chrono()", 10);
+	}
+
+	function chronoStart(){
+		start = new Date();
+		chrono();
+	}
+
+	function chronoStop(status = "Terminated"){
+		clearTimeout(timerID);
+		$("#statusProcess").text(status);
+		$("#btnSend").prop('disabled', false);
+	}
+
+	// Connexion à socket.io
+	const socket = io('http://localhost:8081');
+
+    socket.on('processed', function(msg){
+	   nbElem--;
+	   updateNbElem(totalElem - nbElem);
+	   if (nbElem == 0) {
+		   chronoStop();
+	   }
+	});	
+
+    socket.on('error', function(msg){
+		chronoStop("server error");
+	});	
+
+	// Lorsqu'on envoie le formulaire, on transmet le message et on l'affiche sur la page
+	$('#Form').submit(function () {
+		
+		nbElem = $('#nbElem').val();
+		totalElem = $('#nbElem').val();
+		if (nbElem > 0) {
+
+			try {
+				var countObj = {
+					count : nbElem,
+					messageId : msgId++
+				}
+				socket.emit('enqueue', countObj); // emet le message au serveur
+
+				$("#statusProcess").text("processing");
+				$("#btnSend").prop('disabled', true);
+
+				updateNbElem();//par defaut 0
+				chronoStart();
+				
+			} catch (error) {
+				console.log("Erreur Socket = ", error);
+			}
+
+		}else{
+			alert("Veuillez saisir un nombre d'element supérieur à 0");
+		}
+		return false;
+	});
+</script>
+
+</body>
+<% include partials/scripts %>
